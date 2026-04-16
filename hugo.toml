@@ -1,0 +1,5 @@
+baseURL = 'https://zineyu.github.io/'
+locale = 'zh-cn'
+title = "zine yu's blog"
+
+theme = ["PaperMod"]
