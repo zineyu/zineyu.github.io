@@ -3,3 +3,7 @@ locale = 'zh-cn'
 title = "zine yu's blog"
 
 theme = ["PaperMod"]
+
+[caches]
+[caches.images]
+dir = ':cacheDir/images'
