@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" data-theme="auto">
+<head>
+  {% include "partials/head.html" %}
+</head>
+<body class="{% if section is defined %}list{% else %}post{% endif %}" data-search-index="{{ config.base_url }}search_index.{{ config.default_language }}.json">
+  <a class="skip-link" href="#main">跳到正文</a>
+  {% include "partials/header.html" %}
+  <main id="main" class="main">
+    {% block content %}{% endblock %}
+  </main>
+  {% include "partials/footer.html" %}
+  {% include "partials/search.html" %}
+  <script src="{{ get_url(path='js/site.js') }}" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

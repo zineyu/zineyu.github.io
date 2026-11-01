@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="post-single">
+  <header class="post-header">
+    {% if page.components | length > 1 %}
+    <nav class="breadcrumbs" aria-label="面包屑">
+      <a href="{{ get_url(path='@/_index.md') }}">主页</a>
+      <span>»</span>
+      <a href="{{ config.base_url }}blog/">博客</a>
+    </nav>
+    {% endif %}
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      {% if page.date %}<span>{{ page.date | date(format="%Y年%m月%d日") }}</span>{% endif %}
+      <span>{{ page.reading_time }} 分钟</span>
+      <span>{{ page.word_count }} 字</span>
+      {% if config.author %}<span>{{ config.author }}</span>{% endif %}
+    </div>
+  </header>
+
+  {% if page.toc | length > 1 %}
+  <details class="toc">
+    <summary>目录</summary>
+    <ul class="toc-list">
+      {% for header in page.toc %}
+      <li class="toc-item toc-level-{{ header.level }}">
+        <a href="{{ header.permalink }}">{{ header.title }}</a>
+        {% if header.children %}
+        <ul class="toc-list">
+          {% for child in header.children %}
+          <li class="toc-item toc-level-{{ child.level }}">
+            <a href="{{ child.permalink }}">{{ child.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </details>
+  {% endif %}
+
+  <div class="post-content">
+    {{ page.content | safe }}
+  </div>
+
+  {% set tags = page.taxonomies?["tags"] or [] %}
+  {% if tags %}
+  <footer class="post-footer">
+    <ul class="post-tags">
+      {% for tag in tags %}
+      <li><a href="{{ get_taxonomy_url(kind='tags', term=tag) }}">{{ tag }}</a></li>
+      {% endfor %}
+    </ul>
+  </footer>
+  {% endif %}
+
+  {% if page.lower or page.higher %}
+  <nav class="paginav" aria-label="相邻文章">
+    {% if page.lower %}
+    <a href="{{ page.lower.permalink }}">
+      <span class="muted">« 上一篇</span>
+      <span class="paginav-title">{{ page.lower.title }}</span>
+    </a>
+    {% endif %}
+    {% if page.higher %}
+    <a class="next" href="{{ page.higher.permalink }}">
+      <span class="muted">下一篇 »</span>
+      <span class="paginav-title">{{ page.higher.title }}</span>
+    </a>
+    {% endif %}
+  </nav>
+  {% endif %}
+
+  {% include "partials/comments.html" %}
+</article>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% set giscus = config.extra?.giscus %}
+{% if giscus and giscus.repo_id and giscus.category_id and page.date %}
+<section class="comments" aria-label="评论">
+  <h2 class="comments-title">评论</h2>
+  <div
+    class="giscus"
+    data-repo="{{ giscus.repo }}"
+    data-repo-id="{{ giscus.repo_id }}"
+    data-category="{{ giscus.category }}"
+    data-category-id="{{ giscus.category_id }}"
+    data-mapping="{{ giscus.mapping }}"
+    data-lang="{% if lang == 'zh' %}zh-CN{% else %}{{ lang }}{% endif %}"
+    data-theme="preferred_color_scheme">
+    <p class="muted">评论加载中…（需要能访问 GitHub）</p>
+  </div>
+</section>
+{% endif %}

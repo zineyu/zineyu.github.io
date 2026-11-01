@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="page-header">
+  <h1>{{ section.title }}</h1>
+  {% if section.description %}<p>{{ section.description }}</p>{% endif %}
+</header>
+
+{% if section.content %}
+<div class="post-content">{{ section.content | safe }}</div>
+{% endif %}
+
+{% if paginator %}
+  {% set pages = paginator.pages %}
+{% else %}
+  {% set pages = section.pages %}
+{% endif %}
+
+{% include "partials/post_list.html" %}
+{% include "partials/pagination.html" %}
+{% endblock %}

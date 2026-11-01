@@ -1,0 +1,27 @@
+{% if pages | length == 0 %}
+<p class="empty">还没有文章。</p>
+{% else %}
+{% for post in pages %}
+{% if post.description %}
+{% set excerpt = post.description %}
+{% elif post.summary %}
+{% set excerpt = post.summary %}
+{% else %}
+{% set excerpt = "" %}
+{% endif %}
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>{{ post.title }}</h2>
+  </header>
+  <div class="entry-content">
+    <p>{{ excerpt | striptags | truncate(length=150) }}</p>
+  </div>
+  <footer class="entry-footer">
+    {% if post.date %}<span>{{ post.date | date(format="%Y年%m月%d日") }}</span>{% endif %}
+    <span>{{ post.reading_time }} 分钟</span>
+    <span>{{ post.word_count }} 字</span>
+  </footer>
+  <a class="entry-link" aria-label="{{ post.title }}" href="{{ post.permalink }}"></a>
+</article>
+{% endfor %}
+{% endif %}

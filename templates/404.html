@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="not-found">
+  <p class="not-found-code">404</p>
+  <h1>这里什么都没有</h1>
+  <p>页面可能被移动或删除了。</p>
+  <p><a href="{{ get_url(path='@/_index.md') }}">← 回到首页</a></p>
+</section>
+{% endblock %}

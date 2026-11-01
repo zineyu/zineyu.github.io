@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="page-header">
+  <p><a href="{{ config.base_url }}tags/">← 全部标签</a></p>
+  <h1>{{ term.name }}</h1>
+  <p>{{ term.pages | length }} 篇文章</p>
+</header>
+
+{% set pages = term.pages %}
+{% include "partials/post_list.html" %}
+{% endblock %}

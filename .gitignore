@@ -1,0 +1,19 @@
+# 构建产物
+public/
+
+# devenv / direnv
+.devenv*
+devenv.local.nix
+devenv.local.yaml
+.direnv/
+result
+result-*
+
+# 编辑器 / 系统
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# 子代理临时目录
+.pi-subagents/

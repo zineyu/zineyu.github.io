@@ -1,0 +1,84 @@
+# ============================================================
+# 站点配置 —— 换名字 / 换域名只需要改这个文件
+# ============================================================
+
+# 唯一必填项。注意：结尾必须带斜杠。
+#  - 用户主页仓库（zineyu.github.io）      → "https://zineyu.github.io/"
+#  - 项目主页仓库（例如 homepage）          → "https://zineyu.github.io/homepage/"
+#  - 自定义域名                             → "https://example.com/"
+base_url = "https://zineyu.github.io/"
+
+title = "zineyu"
+description = "zineyu 的个人主页与博客：工程实践、Rust、系统设计。"
+default_language = "zh"
+author = "zineyu"
+
+output_dir = "public"
+minify_html = true
+compile_sass = false
+
+# 订阅与站点地图
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+generate_sitemap = true
+generate_robots_txt = true
+
+# 标签页：/tags/
+taxonomies = [{ name = "tags", feed = true }]
+
+# 客户端搜索：构建时输出 public/search_index.zh.json，由 static/js/search.js 读取
+build_search_index = true
+
+[markdown]
+smart_punctuation = false        # 中文写作关掉智能标点，避免把 "..." 变成 …
+external_links_target_blank = true
+bottom_footnotes = true
+github_alerts = true             # 支持 > [!NOTE] 这类提示块
+insert_anchor_links = "right"    # 标题右侧的锚点链接
+
+# 代码高亮：class 模式，统一使用暗色代码块（输出 giallo.css）
+[markdown.highlighting]
+style = "class"
+theme = "github-dark"
+error_on_missing_language = true
+
+[search]
+index_format = "fuse_json"
+include_title = true
+include_description = true
+include_content = true
+truncate_content_length = 4000
+
+[link_checker]
+internal_level = "error"
+external_level = "warn"          # 外链偶发 403 不至于让 CI 失败
+
+# 中文标签直接作为 URL（/tags/建站/），不转成拼音
+[slugify]
+paths = "on"
+taxonomies = "safe"
+anchors = "on"
+
+# ============================================================
+# 自定义字段（模板里通过 config.extra.* 读取）
+# ============================================================
+[extra]
+home_title = "Hi, I'm Zine Yu"
+
+# 社交链接：按顺序渲染，name 决定图标（github / email / x / 其他）
+[[extra.social]]
+name = "github"
+url = "https://github.com/zineyu"
+
+[[extra.social]]
+name = "email"
+url = "mailto:yu.zine.zy@gmail.com"
+
+# 评论（giscus，基于 GitHub Discussions）
+# 开启步骤见 README「评论」一节：填好 repo / repo_id / category_id 才会渲染
+[extra.giscus]
+repo = "zineyu/zineyu.github.io"
+repo_id = ""
+category = "Announcements"
+category_id = ""
+mapping = "pathname"

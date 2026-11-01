@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="page-header">
+  <h1>标签</h1>
+  <p>共 {{ terms | length }} 个标签</p>
+</header>
+
+<ul class="terms-tags">
+  {% for term in terms %}
+  <li>
+    <a href="{{ term.permalink }}">{{ term.name }}<span class="term-count">{{ term.pages | length }}</span></a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
