@@ -78,7 +78,7 @@ url = "mailto:yu.zine.zy@gmail.com"
 # 开启步骤见 README「评论」一节：填好 repo / repo_id / category_id 才会渲染
 [extra.giscus]
 repo = "zineyu/zineyu.github.io"
-repo_id = ""
+repo_id = "R_kgDONMtFbw"
 category = "Announcements"
-category_id = ""
+category_id = "DIC_kwDONMtFb84DKKLu"
 mapping = "pathname"
