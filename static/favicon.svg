@@ -1,4 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="zineyu">
-  <rect width="64" height="64" rx="14" fill="#2f6feb"/>
-  <path d="M20 20h24L26 42h18v6H20v-6l18-22H20z" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="zineyu">
+  <!--
+    与站点视觉一致：只用中性灰阶，无强调色；圆角与站点的 radius 同比例。
+    亮色下深底浅字，暗色下反相，取值为站点 primary 与 theme 两个变量。
+  -->
+  <style>
+    .bg { fill: rgb(30, 30, 30); }
+    .mark { stroke: rgb(255, 255, 255); }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: rgb(218, 218, 219); }
+      .mark { stroke: rgb(29, 30, 32); }
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="14"/>
+  <path class="mark"
+        d="M19 21h26L19 41h26"
+        fill="none"
+        stroke-width="6.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
 </svg>
